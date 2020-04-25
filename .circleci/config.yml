@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run:
+          name: Install Python Dependencies
+          command: |
+            pip install -r requirements.txt
+      - run:
+          name: Run Build Tests
+          command: |
+            python -m tests.test_peg
