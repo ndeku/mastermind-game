@@ -7,14 +7,14 @@ class Game(object):
   def __init__(self, answer=None):
     self.k = 4 # number of classes
     self.num_spaces = 4 # number of places/ spaces
-    self.answer = answer if answer else self.__generate_solution(answer)
+    self.answer = answer if answer else self.__generate_solution()
 
   def make_guess(self, guess):
     if (guess == self.answer):
       return "Win!!!"
     return "Try again"
 
-  def __generate_solution(self, answer):
+  def __generate_solution(self):
     "Generates a game solution among possible classes"
     classes = list(Peg(i) for i in range(0, self.k))
     return choices(classes, k=self.num_spaces)
