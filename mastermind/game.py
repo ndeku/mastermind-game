@@ -12,12 +12,10 @@ class Game(object):
 
   def make_guess(self, guess):
     self.guesses.append(guess)
-    if len(self.guesses) > 10:
+    if ((self.__is_solution(guess)) & (len(self.guesses) <= 10)):
+      return "Win!!!" # CodeBreaker wins
+    if (len(self.guesses) >= 10):
       return "Loss, too many guesses" #CodeMaster wins
-    if (self.__is_solution(guess)):
-      return "Win!!!"
-    if len(self.guesses) == 10:
-      return "Loss, too many guesses"
     return "Try again"
 
   def __is_solution(self, guess):
