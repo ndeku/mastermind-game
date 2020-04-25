@@ -20,10 +20,9 @@ class peg_test(unittest.TestCase):
     peg_b = Peg("Blue")
     self.assertNotEqual(peg_a, peg_b, msg=f"Two Pegs of different color should be equal: {peg_a} {peg_b}")
 
-  def test_pegs_print_correct_color(self):
+  def test_peg_string_representation_is_readable(self):
     peg_a = Peg("Green")
     self.assertEqual("Green", str(peg_a))
-
-  
+    self.assertEqual("Blue", str(Peg("Blue")))
 
 unittest.main()
