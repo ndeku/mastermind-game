@@ -13,3 +13,4 @@ jobs:
           name: Run Build Tests
           command: |
             python -m tests.test_peg -v
+            python -m tests.test_game -v
