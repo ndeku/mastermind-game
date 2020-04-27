@@ -72,4 +72,22 @@ class game_test(unittest.TestCase):
     self.assertEqual(hint, [None, None, None, Peg("Black")],
       msg=f'Answer with correct color and position should return black peg')
 
+  def test_guess_with_duplicate_colors_doesnt_give_peg(self):
+    solution = [Peg("Blue"), Peg("Blue"), Peg("Pink"), Peg("Pink")]
+    game = Game(solution)
+    result, hint = game.make_guess([Peg("Blue"), Peg("Blue"), Peg("Blue"), Peg("Pink")])
+    self.assertEqual(hint, [Peg("Black"), Peg("Black"), None, Peg("Black")], 
+      msg=f"""Answer with more than correct color matches should not return white peg: 
+              {[str(p) for p in hint]}""")
+
+  def test_guess_with_duplicate_colors_gives_hint(self):
+    print("test_guess_with_duplicate_colors_doesnt_give_peg()")
+    solution = [Peg("Blue"), Peg("Blue"), Peg("Pink"), Peg("Blue")]
+    game = Game(solution)
+    result, hint = game.make_guess([Peg("Blue"), Peg("Blue"), Peg("Blue"), Peg("Yellow")])
+    self.assertEqual(hint, [Peg("Black"), Peg("Black"), Peg("White"), None], 
+      msg=f"""Answer with more than correct color matches should not return white peg: 
+              {[str(p) for p in hint]}""")
+  
+
 unittest.main()
