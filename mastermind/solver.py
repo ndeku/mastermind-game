@@ -20,5 +20,5 @@ class RandomSolver(Solver):
 
   def generate_guess(self, hint=None):
     "Generates a random code guess by sampling with replacement among possible classes"
-    classes = [Peg("Green"), Peg("Blue"), Peg("Pink"), Peg("Yellow")]
+    classes = self.game.get_classes()
     return choices(classes, k=self.game.num_spaces)

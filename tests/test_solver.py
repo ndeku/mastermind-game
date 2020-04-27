@@ -9,7 +9,6 @@ class solver_test(unittest.TestCase):
   "Unit Tests for Mastermind game class"
 
   def test_random_solver(self):
-    seed = random.seed(42) 
     game = Game()
     solver = RandomSolver(game)
     guesses = []

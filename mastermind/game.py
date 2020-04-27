@@ -5,7 +5,7 @@ class Game(object):
   "Understands state of game and win/loss"
 
   def __init__(self, answer=None):
-    self.k = 4 # number of classes
+    self.classes = [Peg("Green"), Peg("Blue"), Peg("Pink"), Peg("Yellow")]
     self.num_spaces = 4 # number of places/ spaces
     self.answer = answer if answer else self.__generate_solution()
     self.guesses = []
@@ -23,6 +23,7 @@ class Game(object):
 
   def __generate_solution(self):
     "Generates a game solution among possible classes"
-    #classes = list(Peg(i) for i in range(0, self.k))
-    classes = [Peg("Green"), Peg("Blue"), Peg("Pink"), Peg("Yellow")]
-    return choices(classes, k=self.num_spaces)
+    return choices(self.classes, k=self.num_spaces)
+
+  def get_classes(self):
+    return self.classes
