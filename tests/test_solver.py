@@ -8,7 +8,7 @@ import random
 class solver_test(unittest.TestCase):
   "Unit Tests for Mastermind game class"
 
-  def test_random_solver(self):
+  def test_random_solver_is_random(self):
     game = Game()
     solver = RandomSolver(game)
     guesses = []
