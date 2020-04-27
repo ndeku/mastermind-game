@@ -72,7 +72,7 @@ class game_test(unittest.TestCase):
     self.assertEqual(hint, [None, None, None, Peg("Black")],
       msg=f'Answer with correct color and position should return black peg')
 
-  def test_guess_with_duplicate_colors_doesnt_give_hint(self):
+  def test_no_hint_when_guess_colors_exceed_solution(self):
     solution = [Peg("Blue"), Peg("Blue"), Peg("Pink"), Peg("Pink")]
     game = Game(solution)
     result, hint = game.make_guess([Peg("Blue"), Peg("Blue"), Peg("Blue"), Peg("Pink")])
