@@ -6,6 +6,7 @@ class Game(object):
 
   def __init__(self, solution=None):
     self.classes = [Peg("Green"), Peg("Blue"), Peg("Pink"), Peg("Yellow")]
+    self.hints = [Peg("Black"), Peg("White")]
     self.num_spaces = 4 # number of places/ spaces
     self.solution = solution if solution else self.__generate_solution()
     self.guesses = []
@@ -33,13 +34,13 @@ class Game(object):
     hint = []
     for i, item in enumerate(guess):
       if item == self.solution[i]:
-        hint.append(Peg("Black")) # correct in both color and position
+        hint.append(self.hints[0]) # correct in both color and position
         continue
       if guess.count(item) > self.solution.count(item):
         hint.append(None) # no hint if count of item exceeds occurances in solution 
         continue
       if item in self.solution:
-        hint.append(Peg("White")) # correct color code peg placed in the wrong position
+        hint.append(self.hints[1]) # correct color code peg placed in the wrong position
         continue
       hint.append(None)
     return hint
