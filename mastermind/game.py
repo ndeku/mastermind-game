@@ -35,12 +35,11 @@ class Game(object):
       if item == self.solution[i]:
         hint.append(Peg("Black")) # correct in both color and position
         continue
-      # no hint if count of item exceeds occurances in solution 
-      if (len([g for g in guess if g == item]) > len([s for s in self.solution if s == item])):
-        hint.append(None)
+      if guess.count(item) > self.solution.count(item):
+        hint.append(None) # no hint if count of item exceeds occurances in solution 
         continue
       if item in self.solution:
-        hint.append(Peg("White"))
+        hint.append(Peg("White")) # correct color code peg placed in the wrong position
         continue
-      hint.append(None) # correct color code peg placed in the wrong position
+      hint.append(None)
     return hint
