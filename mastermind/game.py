@@ -30,12 +30,13 @@ class Game(object):
 
   def get_hint(self, guess):
     "Return keypegs as hint"
-    """
-    Black key peg is placed for each code peg from the guess which is correct in both color and position. 
-    A white key peg indicates the existence of a correct color code peg placed in the wrong position
-    """
     hint = []
     for i, item in enumerate(guess):
       if item == self.solution[i]:
-        hint.append(Peg("Black"))
+        hint.append(Peg("Black")) # correct in both color and position
+        continue
+      if item in self.solution:
+        hint.append(Peg("White"))
+        continue
+      hint.append(None) # correct color code peg placed in the wrong position
     return hint

@@ -57,4 +57,19 @@ class game_test(unittest.TestCase):
     result, hint = Game().make_guess([Peg("Blue"), Peg("Blue"), Peg("Blue"), Peg("Pink")])
     self.assertIsNotNone(hint)
 
+  def test_guess_with_correct_color_returns_white_peg(self):
+    solution = [Peg("Blue"), Peg("Blue"), Peg("Pink"), Peg("Pink")]
+    game = Game(solution)
+    result, hint = game.make_guess([Peg("Green"), Peg("Green"), Peg("Blue"), Peg("Green")])
+    self.assertEqual(hint, [None, None, Peg("White"), None],
+      msg=f'Answer with correct color should return white peg: {hint}')
+
+  def test_guess_with_correct_color_and_position_returns_black_peg(self):
+    # Black key peg is placed for each code peg from the guess which is correct in both color and position
+    solution = [Peg("Blue"), Peg("Blue"), Peg("Pink"), Peg("Pink")]
+    game = Game(solution)
+    result, hint = game.make_guess([Peg("Green"), Peg("Green"), Peg("Green"), Peg("Pink")])
+    self.assertEqual(hint, [None, None, None, Peg("Black")],
+      msg=f'Answer with correct color and position should return black peg')
+
 unittest.main()
